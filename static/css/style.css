@@ -1,0 +1,29 @@
+.completed-todo{
+    text-decoration: line-through !important;
+}
+
+.completed-form{
+    display: none;
+}
+
+.btn-remove-todo {
+    margin-right: 3%;
+}
+
+.btn-add-comm {
+    margin-top: 10px;
+}
+
+.header-block {
+    display: inline-block;
+    width: 86%;
+}
+
+.form-control-lg {
+    font-size: .7rem;
+}
+
+.filter-style {
+    border: 1px solid rgba(0,0,0,.125);
+    padding: .75rem 1.25rem;
+}

@@ -1,0 +1,77 @@
+{% extends "layouts/base_layout.html" %}
+
+{% block main %}
+    {% if user %}
+
+        <div id="error" class="alert alert-danger" style="display: none"></div>
+        <section id="section-container">
+        <div id="loading" class="text-center m-5" style="display: none">
+                <div class="spinner-border"></div>
+        </div>
+            <div class="d-flex">
+              <form action="/" method="POST" class="card-body float-right">
+                      {% if error %}
+                          <div class="alert alert-danger">
+                             {{ error }}
+                          </div>
+                      {% endif %}
+
+                      <div class="form-group">
+                          <label for="task_input">Название задачи:</label>
+                          <input type="text" name="task_name" class="form-control" id="task_input" placeholder="Введите название задачи">
+                      </div>
+                     <div class="form-group">
+                          <label for="description_input">Описание задачи:</label>
+                          <input type="text" name="task_description" class="form-control" id="description_input" placeholder="Введите описание задачи">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Добавить задачу</button>
+              </form>
+           </div>
+            {#Добавить блок фильтров сюда#}
+            <div class="row">
+                <div class="col-md-4 order-md-2 mb-4">
+                    <h4 class="mb-3">Фильтры</h4>
+                    <div class="filter-style">
+                        <div>
+                        По состоянию
+                        <select name="" id="filters">
+                            <option value="all">Все</option>
+                            <option value="done">Выполненные</option>
+                            <option value="active">Активные</option>
+                        </select>
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                          <label for="name_filter">По имени</label>
+                          <input type="text" name="name_filter" class="form-control" id="name-filter" placeholder="Введите название задачи">
+                    </div>
+                    <button class="btn btn-primary btn-remove-todo" id="filter-btn" disabled>Фильтровать</button>
+                    </div>
+
+                </div>
+                <div class="col-md-8 order-md-1">
+                    <h4 class="mb-3">Задачи</h4>
+                    <div class="task_block">
+                      <ul id="todo-list" class="list-group">
+                        {% for i in range(0, len) %}
+                          <li class="list-group-item list-group-item-action todo-item" data-id="{{ task[i][0] }}">
+                              <div class="header-block" id="header-block{{ task[i][0] }}">
+                                  <h1 class="header-task" id="header-task{{ task[i][0] }}" data-toggle="collapse" data-target="#demo{{ task[i][0] }}">
+                                      {{ task[i][1] }}
+                                  </h1>
+                              </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    {% else %}
+    <div class="alert alert-info">
+        ToDo Приложение
+    </div>
+    {% endif %}
+{% endblock %}
